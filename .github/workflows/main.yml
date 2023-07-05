@@ -6,9 +6,9 @@ on:
       - master
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-
+    
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -21,15 +21,13 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Set Git identity
-        run: |
-          git config --global user.email "yyhxiaolang@gmail.com"
-          git config --global user.name "yyh0808"
-
       - name: Build
         run: npm run build
 
       - name: Deploy to GitHub Pages
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        run: npx gh-pages -d build -b gh-pages -t $ACCESS_TOKEN
+        run: |
+          git config --global user.email "you@example.com"
+          git config --global user.name "Your Name"
+          npx gh-pages -d build -b master -t $ACCESS_TOKEN

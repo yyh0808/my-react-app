@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     
     steps:
@@ -25,9 +25,9 @@ jobs:
         run: npm run build
 
       - name: Deploy to GitHub Pages
-        env:
+        uses: JamesIves/github-pages-deploy-action@3
+        with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        run: |
-          git config --global user.email "yyhxiaolang@gmail.com"
-          git config --global user.name "yyh0808"
-          npx gh-pages -d build -b master -t $ACCESS_TOKEN
+          BRANCH: gh-pages
+          FOLDER: build
+          BUILD_SCRIPT: npm install && npm run build

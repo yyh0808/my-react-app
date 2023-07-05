@@ -28,6 +28,6 @@ jobs:
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         run: |
-          git config --global user.email "you@example.com"
-          git config --global user.name "Your Name"
+          git config --global user.email "yyhxiaolang@gmail.com"
+          git config --global user.name "yyh0808"
           npx gh-pages -d build -b master -t $ACCESS_TOKEN
